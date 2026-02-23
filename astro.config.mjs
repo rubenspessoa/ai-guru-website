@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.hustlrr.ai',
+  site: 'https://rubenspessoa.github.io',
+  base: '/ai-guru-website',
   output: 'static',
   i18n: {
     locales: ['en', 'de'],
