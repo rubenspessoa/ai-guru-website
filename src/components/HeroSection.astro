@@ -9,6 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="relative px-5 -mt-16" style="height: min(888px, 100vh); overflow-x: clip; overflow-y: visible;">
@@ -21,7 +22,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
     aria-hidden="true"
   >
     <img
-      src="/images/hero-phone.jpg"
+      src={`${base}images/hero-phone.jpg`}
       alt=""
       class="w-full h-full object-cover"
     />
@@ -37,7 +38,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
       <!-- Brand logo -->
       <div class="mb-4">
         <img
-          src="/images/logo.png"
+          src={`${base}images/logo.png`}
           alt="Hustlrr"
           class="h-[52px] w-auto"
         />
@@ -69,12 +70,12 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
     <!-- Trust badges -->
     <div class="flex items-center justify-center gap-8 animate-hero-delay-1">
       <img
-        src="/images/badge-ratings.png"
+        src={`${base}images/badge-ratings.png`}
         alt="4.9 stars on the App Store"
         class="h-[50px] w-auto"
       />
       <img
-        src="/images/badge-eu.png"
+        src={`${base}images/badge-eu.png`}
         alt="Built in Europe"
         class="h-[50px] w-auto"
       />

@@ -11,6 +11,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const currentPath = Astro.url.pathname;
 const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+const base = import.meta.env.BASE_URL;
 
 const blogLinks = [
   { label: 'Top prompts for everyday work', href: getLocalizedPath('/blog/top-ai-prompts-for-everyday-work', lang) },
@@ -45,7 +46,7 @@ const blogLinks = [
       <!-- Logo -->
       <a href={getLocalizedPath('/', lang)} class="inline-flex items-center">
         <img
-          src="/images/logo.png"
+          src={`${base}images/logo.png`}
           alt="hustlrr"
           class="h-9 w-auto"
         />
@@ -86,7 +87,7 @@ const blogLinks = [
           class="inline-flex items-center justify-center rounded-lg overflow-hidden hover:opacity-80 transition-opacity border border-white/20"
           style="width: 121px; height: 40px; background: #000;"
         >
-          <img src="/images/Group@2x.png" alt="Download on the App Store" class="h-[28px] w-auto" style="filter: invert(1);" />
+          <img src={`${base}images/Group@2x.png`} alt="Download on the App Store" class="h-[28px] w-auto" style="filter: invert(1);" />
         </a>
         <a
           href={appStoreUrl}
@@ -95,7 +96,7 @@ const blogLinks = [
           class="inline-flex items-center justify-center rounded-lg overflow-hidden hover:opacity-80 transition-opacity border border-white/20"
           style="width: 156px; height: 40px; background: #000;"
         >
-          <img src="/images/Frame@2x.png" alt="Download on the Mac App Store" class="h-[28px] w-auto" style="filter: invert(1);" />
+          <img src={`${base}images/Frame@2x.png`} alt="Download on the Mac App Store" class="h-[28px] w-auto" style="filter: invert(1);" />
         </a>
       </div>
     </div>

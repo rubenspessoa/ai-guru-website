@@ -9,6 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="features" class="px-5">
@@ -19,7 +20,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
       <!-- Image card: 450×350 at desktop, 44px radius, overflow clips image -->
       <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:w-[450px] min-[1200px]:h-[350px] min-[1200px]:shrink-0 aspect-[9/7] min-[1200px]:aspect-auto rounded-[44px] overflow-hidden bg-[#15161a]/80">
         <img
-          src="/images/feature-browse.jpg"
+          src={`${base}images/feature-browse.jpg`}
           alt="Hustlrr browsing feature - chat with AI on any webpage"
           class="w-full h-full object-cover"
         />
@@ -41,7 +42,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
       <!-- Image card -->
       <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:w-[450px] min-[1200px]:h-[350px] min-[1200px]:shrink-0 aspect-[9/7] min-[1200px]:aspect-auto rounded-[44px] overflow-hidden bg-[#15161a]/80">
         <img
-          src="/images/feature-ask.jpg"
+          src={`${base}images/feature-ask.jpg`}
           alt="Hustlrr ask anything feature - chat, create, analyze with AI"
           class="w-full h-full object-cover"
         />
@@ -76,7 +77,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
       <!-- Image card -->
       <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:w-[450px] min-[1200px]:h-[350px] min-[1200px]:shrink-0 aspect-[9/7] min-[1200px]:aspect-auto rounded-[44px] overflow-hidden bg-[#15161a]/80">
         <img
-          src="/images/feature-privacy.jpg"
+          src={`${base}images/feature-privacy.jpg`}
           alt="Hustlrr AI model selection - choose between ChatGPT, Gemini, and more"
           class="w-full h-full object-cover"
         />
@@ -94,7 +95,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
         <!-- Built in Europe badge -->
         <div class="flex items-center justify-center min-[1200px]:justify-start mb-8">
           <img
-            src="/images/badge-eu.png"
+            src={`${base}images/badge-eu.png`}
             alt="Built in Europe"
             class="h-[40px] w-auto"
           />

@@ -9,6 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+const base = import.meta.env.BASE_URL;
 
 const testimonials = [
   {
@@ -94,7 +95,7 @@ const testimonials = [
     <div class="text-center mb-16 animate-reveal">
       <!-- Chat bubbles icon -->
       <div class="flex items-center justify-center mb-6" aria-hidden="true">
-        <img src="/images/bubbles.png" alt="" width="120" height="80" class="h-16 w-auto" />
+        <img src={`${base}images/bubbles.png`} alt="" width="120" height="80" class="h-16 w-auto" />
       </div>
 
       <h3 class="text-xl font-semibold text-white mb-3">
@@ -120,7 +121,7 @@ const testimonials = [
     <div class="text-center animate-reveal">
       <!-- Lock icon in speech bubble -->
       <div class="flex items-center justify-center mb-6" aria-hidden="true">
-        <img src="/images/bubbles-lock.png" alt="" width="100" height="80" class="h-16 w-auto" />
+        <img src={`${base}images/bubbles-lock.png`} alt="" width="100" height="80" class="h-16 w-auto" />
       </div>
 
       <h3 class="text-xl font-semibold text-white mb-3">
