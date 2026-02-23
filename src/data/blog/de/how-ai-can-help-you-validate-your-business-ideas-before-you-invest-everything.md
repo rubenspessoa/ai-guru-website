@@ -4,7 +4,7 @@ description: "Entdecken Sie, wie KI-Tools wie GPT, Claude und Gemini helfen kön
 pubDate: 2026-02-23
 lang: de
 translationSlug: how-ai-can-help-you-validate-your-business-ideas-before-you-invest-everything
-draft: true
+draft: false
 ---
 
 ## Der hohe Preis unvalidierter Ideen
