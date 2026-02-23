@@ -84,6 +84,30 @@ const jsonLd = {
       <div class="prose animate-reveal">
         <slot />
       </div>
+
+      <!-- Newsletter signup -->
+      <div class="mt-16 pt-12 border-t border-border">
+        <div class="max-w-[600px] mx-auto" id="blog-newsletter">
+          <script is:inline async data-uid="c6d9f0aca8" src="https://hustlrr-ai.kit.com/c6d9f0aca8/index.js"></script>
+        </div>
+        <style is:inline>
+          #blog-newsletter .formkit-form {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+            border-radius: 24px !important;
+            overflow: hidden !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          }
+          #blog-newsletter .formkit-submit {
+            border-radius: 20px !important;
+          }
+          #blog-newsletter .formkit-input {
+            border-radius: 12px !important;
+          }
+          #blog-newsletter .formkit-column {
+            border-top: none !important;
+          }
+        </style>
+      </div>
     </div>
   </article>
 </PageLayout>

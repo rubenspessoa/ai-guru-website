@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '@i18n/translations';
 import { useTranslations, getLocalizedPath } from '@i18n/utils';
+import { getCollection } from 'astro:content';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -13,10 +14,17 @@ const currentPath = Astro.url.pathname;
 const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
 const base = import.meta.env.BASE_URL;
 
+const posts = (await getCollection('blog', ({ data }) => {
+  return data.lang === lang && !data.draft;
+})).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const latestPosts = posts.slice(0, 3);
+
 const blogLinks = [
-  { label: 'Top prompts for everyday work', href: getLocalizedPath('/blog/top-ai-prompts-for-everyday-work', lang) },
-  { label: 'Why Are Moving From One AI Model to AI Stacks', href: getLocalizedPath('/blog/why-professionals-are-moving-from-one-ai-model-to-ai-stacks', lang) },
-  { label: 'AI workflows pros use daily', href: getLocalizedPath('/blog/ai-workflows-professionals-use-daily-and-why-they-work', lang) },
+  ...latestPosts.map((post) => ({
+    label: post.data.title,
+    href: getLocalizedPath(`/blog/${post.id.replace(/^(en|de)\//, '')}`, lang),
+  })),
   { label: t('nav.blog'), href: getLocalizedPath('/blog', lang) },
 ];
 ---
