@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://rubenspessoa.github.io',
-  base: '/ai-guru-website',
+  base: '/ai-guru-website/',
   output: 'static',
   i18n: {
     locales: ['en', 'de'],
