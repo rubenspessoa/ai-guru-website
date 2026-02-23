@@ -1,6 +1,6 @@
 ---
 import type { Lang } from '@i18n/translations';
-import { useTranslations, formatDate } from '@i18n/utils';
+import { useTranslations, formatDate, getLocalizedPath } from '@i18n/utils';
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const { title, description, pubDate, slug, lang } = Astro.props;
 const t = useTranslations(lang);
-const href = lang === 'en' ? `/blog/${slug}` : `/de/blog/${slug}`;
+const href = getLocalizedPath(`/blog/${slug}`, lang);
 ---
 
 <a href={href} class="block hover-card rounded-[var(--radius-card)] border border-border bg-bg-card p-6 md:p-8 group">
