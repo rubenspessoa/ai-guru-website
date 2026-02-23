@@ -1,0 +1,204 @@
+/* ===== Keyframe Definitions ===== */
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ===== Scroll-Reveal (Progressive Enhancement) ===== */
+/* Elements are visible by default. JS adds .will-animate to hide them,
+   then IntersectionObserver adds .revealed to show them with animation. */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Only hide when JS has prepared the element */
+  .animate-reveal.will-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity var(--duration-reveal) var(--ease-smooth),
+      transform var(--duration-reveal) var(--ease-smooth);
+  }
+
+  .animate-reveal.revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Staggered children — only hide when parent is prepared */
+  .animate-stagger.will-animate > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity var(--duration-reveal) var(--ease-smooth),
+      transform var(--duration-reveal) var(--ease-smooth);
+  }
+
+  .animate-stagger.revealed > :nth-child(1) { transition-delay: 0ms; }
+  .animate-stagger.revealed > :nth-child(2) { transition-delay: 100ms; }
+  .animate-stagger.revealed > :nth-child(3) { transition-delay: 200ms; }
+  .animate-stagger.revealed > :nth-child(4) { transition-delay: 300ms; }
+  .animate-stagger.revealed > :nth-child(5) { transition-delay: 400ms; }
+  .animate-stagger.revealed > :nth-child(6) { transition-delay: 500ms; }
+
+  .animate-stagger.revealed > * {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Page load fade-in + slide-up */
+  .animate-hero {
+    animation: fadeSlideUp var(--duration-reveal) var(--ease-smooth) both;
+  }
+
+  .animate-hero-delay-1 {
+    animation: fadeSlideUp var(--duration-reveal) var(--ease-smooth) 100ms both;
+  }
+
+  .animate-hero-delay-2 {
+    animation: fadeSlideUp var(--duration-reveal) var(--ease-smooth) 200ms both;
+  }
+
+  .animate-hero-delay-3 {
+    animation: fadeSlideUp var(--duration-reveal) var(--ease-smooth) 300ms both;
+  }
+
+  /* Navigation fade-in from top */
+  .animate-nav {
+    animation: fadeSlideDown var(--duration-slow) var(--ease-smooth) both;
+  }
+
+  /* Continuous floating motion */
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Gradient background shift */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+}
+
+/* ===== Hover Micro-Interactions ===== */
+
+/* Button hover: scale + shadow */
+.hover-button {
+  transition:
+    transform var(--duration-fast) ease-out,
+    box-shadow var(--duration-fast) ease-out,
+    background-color var(--duration-fast) ease-out;
+}
+
+.hover-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(94, 108, 255, 0.25);
+}
+
+.hover-button:active {
+  transform: scale(0.98);
+}
+
+/* Card hover: lift + glow */
+.hover-card {
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth);
+}
+
+.hover-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(94, 108, 255, 0.15);
+  border-color: rgba(94, 108, 255, 0.3);
+}
+
+/* Link underline slide-in */
+.hover-link {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-size: 0% 2px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size var(--duration-base) var(--ease-smooth);
+  text-decoration: none;
+}
+
+.hover-link:hover {
+  background-size: 100% 2px;
+}
+
+/* Nav item hover */
+.hover-nav {
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+.hover-nav:hover {
+  background-color: rgba(94, 108, 255, 0.1);
+  color: var(--color-text-primary);
+}
+
+/* ===== Reduced Motion: instant everything ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-reveal,
+  .animate-stagger > *,
+  .animate-hero,
+  .animate-hero-delay-1,
+  .animate-hero-delay-2,
+  .animate-hero-delay-3,
+  .animate-nav,
+  .animate-float,
+  .animate-gradient {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,119 @@
+---
+import type { Lang } from '@i18n/translations';
+import { useTranslations } from '@i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+---
+
+<section id="features" class="px-5">
+  <div class="mx-auto max-w-[1000px]">
+
+    <!-- Feature 1: Chat with AI on any webpage — IMAGE left, TEXT right -->
+    <div class="py-16 animate-reveal flex flex-col min-[1200px]:flex-row items-center gap-5 min-[1200px]:gap-[50px]">
+      <!-- Image card: 450×350 at desktop, 44px radius, overflow clips image -->
+      <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:w-[450px] min-[1200px]:h-[350px] min-[1200px]:shrink-0 aspect-[9/7] min-[1200px]:aspect-auto rounded-[44px] overflow-hidden bg-[#15161a]/80">
+        <img
+          src="/images/feature-browse.jpg"
+          alt="Hustlrr browsing feature - chat with AI on any webpage"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:flex-1 text-center min-[1200px]:text-left">
+        <h3 class="text-[35px] font-medium text-white mb-3">
+          {t('features.browsing.title')}
+        </h3>
+        <p class="text-[22px] font-medium text-text-secondary leading-relaxed">
+          {t('features.browsing.description')}
+        </p>
+      </div>
+    </div>
+
+    <!-- Feature 2: Ask anything, do everything — TEXT left, IMAGE right -->
+    <div class="py-16 animate-reveal flex flex-col min-[1200px]:flex-row-reverse items-center gap-5 min-[1200px]:gap-[50px]">
+      <!-- Image card -->
+      <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:w-[450px] min-[1200px]:h-[350px] min-[1200px]:shrink-0 aspect-[9/7] min-[1200px]:aspect-auto rounded-[44px] overflow-hidden bg-[#15161a]/80">
+        <img
+          src="/images/feature-ask.jpg"
+          alt="Hustlrr ask anything feature - chat, create, analyze with AI"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:flex-1 text-center min-[1200px]:text-left">
+        <h3 class="text-[35px] font-medium text-white mb-3">
+          {t('features.askAnything.title')}
+        </h3>
+        <p class="text-[22px] font-medium text-text-secondary leading-relaxed mb-6">
+          {t('features.askAnything.description')}
+        </p>
+
+        <!-- Purple CTA -->
+        <a
+          href={appStoreUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 bg-accent text-white font-bold text-[22px] pl-[25px] pr-[18px] py-3 h-14 rounded-[var(--radius-cta)] hover:bg-accent-light transition-colors duration-200"
+        >
+          {t('cta.getHustlrr')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Feature 3: Private by design — IMAGE left, TEXT right -->
+    <div class="py-16 animate-reveal flex flex-col min-[1200px]:flex-row items-center gap-5 min-[1200px]:gap-[50px]">
+      <!-- Image card -->
+      <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:w-[450px] min-[1200px]:h-[350px] min-[1200px]:shrink-0 aspect-[9/7] min-[1200px]:aspect-auto rounded-[44px] overflow-hidden bg-[#15161a]/80">
+        <img
+          src="/images/feature-privacy.jpg"
+          alt="Hustlrr AI model selection - choose between ChatGPT, Gemini, and more"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="w-full max-w-[500px] min-[1200px]:max-w-none min-[1200px]:flex-1 text-center min-[1200px]:text-left">
+        <h3 class="text-[35px] font-medium text-white mb-3">
+          {t('features.privacy.title')}
+        </h3>
+        <p class="text-[22px] font-medium text-text-secondary leading-relaxed mb-6">
+          {t('features.privacy.description')}
+        </p>
+
+        <!-- Built in Europe badge -->
+        <div class="flex items-center justify-center min-[1200px]:justify-start mb-8">
+          <img
+            src="/images/badge-eu.png"
+            alt="Built in Europe"
+            class="h-[40px] w-auto"
+          />
+        </div>
+
+        <!-- Purple CTA -->
+        <a
+          href={appStoreUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 bg-accent text-white font-bold text-[22px] pl-[25px] pr-[18px] py-3 h-14 rounded-[var(--radius-cta)] hover:bg-accent-light transition-colors duration-200"
+        >
+          {t('cta.getHustlrr')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

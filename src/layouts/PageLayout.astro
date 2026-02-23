@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import type { Lang } from '@i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  ogImage?: string;
+  canonicalPath?: string;
+  type?: 'website' | 'article';
+  publishedDate?: string;
+  modifiedDate?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+  <Header lang={props.lang} />
+  <main class="pt-16">
+    <slot />
+  </main>
+  <Footer lang={props.lang} />
+</BaseLayout>

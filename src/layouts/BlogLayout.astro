@@ -1,0 +1,89 @@
+---
+import PageLayout from './PageLayout.astro';
+import type { Lang } from '@i18n/translations';
+import { useTranslations, formatDate, getLocalizedPath } from '@i18n/utils';
+import '@/styles/prose.css';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  lang: Lang;
+  image?: string;
+  imageAlt?: string;
+  translationSlug?: string;
+}
+
+const { title, description, pubDate, updatedDate, lang, image, imageAlt } = Astro.props;
+const t = useTranslations(lang);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate || pubDate).toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Hustlrr',
+    url: 'https://www.hustlrr.ai',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Hustlrr',
+    url: 'https://www.hustlrr.ai',
+  },
+  ...(image && { image: `https://www.hustlrr.ai${image}` }),
+};
+---
+
+<PageLayout
+  title={`${title} | Hustlrr Blog`}
+  description={description}
+  lang={lang}
+  type="article"
+  publishedDate={pubDate.toISOString()}
+  modifiedDate={(updatedDate || pubDate).toISOString()}
+  jsonLd={jsonLd}
+>
+  <article class="px-5 py-[var(--spacing-section)]">
+    <div class="mx-auto max-w-[var(--max-w-article)]">
+      <!-- Back link -->
+      <a
+        href={getLocalizedPath('/blog', lang)}
+        class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors mb-8"
+      >
+        &larr; {t('blog.backToBlog')}
+      </a>
+
+      <!-- Article header -->
+      <header class="mb-10 animate-reveal">
+        <time class="text-sm text-text-muted" datetime={pubDate.toISOString()}>
+          {t('blog.publishedOn')} {formatDate(pubDate, lang)}
+        </time>
+        <h1 class="text-[var(--text-h1)] md:text-[var(--text-hero)] font-bold font-[var(--font-display)] leading-tight mt-3">
+          {title}
+        </h1>
+        <p class="text-lg text-text-secondary mt-4">{description}</p>
+      </header>
+
+      {image && (
+        <img
+          src={image}
+          alt={imageAlt || title}
+          class="w-full rounded-[var(--radius-card)] mb-10"
+          width="800"
+          height="450"
+          loading="eager"
+        />
+      )}
+
+      <!-- Article body -->
+      <div class="prose animate-reveal">
+        <slot />
+      </div>
+    </div>
+  </article>
+</PageLayout>

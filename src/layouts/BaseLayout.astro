@@ -1,0 +1,64 @@
+---
+import SEOHead from '@components/SEOHead.astro';
+import type { Lang } from '@i18n/translations';
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  ogImage?: string;
+  canonicalPath?: string;
+  type?: 'website' | 'article';
+  publishedDate?: string;
+  modifiedDate?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang={props.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <SEOHead {...props} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Progressive enhancement: elements are visible by default.
+      // JS hides them with .will-animate, then IntersectionObserver reveals with .revealed.
+      const elements = document.querySelectorAll('.animate-reveal, .animate-stagger');
+
+      // Mark elements as ready to animate (hides them via CSS)
+      elements.forEach((el) => el.classList.add('will-animate'));
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+
+      // Fallback: reveal all elements after 3s if IntersectionObserver doesn't fire
+      setTimeout(() => {
+        elements.forEach((el) => {
+          if (!el.classList.contains('revealed')) {
+            el.classList.add('revealed');
+          }
+        });
+      }, 3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSection from '@components/HeroSection.astro';
+import ModelsSection from '@components/ModelsSection.astro';
+import FeaturesSection from '@components/FeaturesSection.astro';
+import TestimonialsSection from '@components/TestimonialsSection.astro';
+const lang = 'en';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Hustlrr',
+  url: 'https://www.hustlrr.ai',
+  description: 'Chat & Browse with the Best AI Models. One subscription for GPT-5, Claude, Gemini, Grok and more.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://www.hustlrr.ai/blog?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<PageLayout
+  title="Hustlrr — Chat & Browse with the Best AI Models"
+  description="Choose your AI model, ask anything, and get answers about any page you visit. Use GPT-5, Claude, Gemini, Grok and more from one place."
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <HeroSection lang={lang} />
+  <ModelsSection lang={lang} />
+  <FeaturesSection lang={lang} />
+  <TestimonialsSection lang={lang} />
+</PageLayout>

@@ -1,0 +1,147 @@
+---
+import type { Lang } from '@i18n/translations';
+import { useTranslations, getLocalizedPath } from '@i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+
+const testimonials = [
+  {
+    title: 'Well done!',
+    text: 'Switching between GPT-5 and Mistral without losing context is a game changer. This has become my main workspace.',
+    author: 'King Dada',
+    rating: 5,
+  },
+  {
+    title: 'Great app',
+    text: 'I have hustlrr installed on all my devices: iPhone, Macbook, iPad and absolutely love it',
+    author: 'ZoeBee',
+    rating: 5,
+  },
+  {
+    title: 'Excellent',
+    text: 'The app offers multiple AI models, while costing less than a ChatGPT subscription alone.',
+    author: 'BiliBili Martin',
+    rating: 5,
+  },
+];
+---
+
+<!-- Single purple section: testimonials + newsletter + support + data privacy -->
+<section class="px-5 py-8">
+  <div class="mx-auto max-w-[var(--max-w-content)] rounded-[50px] bg-accent py-16 md:py-20 px-5 md:px-8 animate-reveal">
+
+    <!-- Testimonials heading -->
+    <h2 class="text-[28px] md:text-[32px] font-bold text-white text-center mb-10">
+      {t('testimonials.title')}
+    </h2>
+
+    <!-- Testimonial cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-[880px] mx-auto">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2">{testimonial.title}</h3>
+            <p class="text-sm text-white/80 leading-relaxed">{testimonial.text}</p>
+          </div>
+          <div class="mt-4">
+            <p class="text-sm text-white font-medium mb-1">{testimonial.author}</p>
+            <div class="flex gap-1">
+              {Array.from({ length: testimonial.rating }).map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-sm text-white/60 text-center mb-16">
+      {t('testimonials.disclaimer')}
+    </p>
+
+    <!-- ConvertKit newsletter signup -->
+    <div class="max-w-[600px] mx-auto mb-16" id="newsletter">
+      <script is:inline async data-uid="c6d9f0aca8" src="https://hustlrr-ai.kit.com/c6d9f0aca8/index.js"></script>
+    </div>
+    <style is:inline>
+      /* Override ConvertKit form styles to match dark purple section */
+      #newsletter .formkit-form {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      }
+      #newsletter .formkit-form .formkit-submit {
+        border-radius: 20px !important;
+      }
+      #newsletter .formkit-form .formkit-input {
+        border-radius: 12px !important;
+      }
+      #newsletter .formkit-form .formkit-column {
+        border-top: none !important;
+      }
+    </style>
+
+    <!-- Human support -->
+    <div class="text-center mb-16 animate-reveal">
+      <!-- Chat bubbles icon -->
+      <div class="flex items-center justify-center mb-6" aria-hidden="true">
+        <img src="/images/bubbles.png" alt="" width="120" height="80" class="h-16 w-auto" />
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-3">
+        {t('support.title')}
+      </h3>
+      <p class="text-sm text-white/70 leading-relaxed max-w-md mx-auto mb-6">
+        {t('support.description')}
+      </p>
+
+      <a
+        href="mailto:support@hustlrr.ai"
+        class="inline-flex items-center gap-3 bg-transparent text-white font-medium text-lg pl-[18px] pr-[25px] h-14 rounded-[var(--radius-cta)] border border-white/30 hover:bg-white/10 transition-colors duration-200"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M22 4L12 13 2 4"/>
+        </svg>
+        {t('cta.contactUs')}
+      </a>
+    </div>
+
+    <!-- Data privacy -->
+    <div class="text-center animate-reveal">
+      <!-- Lock icon in speech bubble -->
+      <div class="flex items-center justify-center mb-6" aria-hidden="true">
+        <img src="/images/bubbles-lock.png" alt="" width="100" height="80" class="h-16 w-auto" />
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-3">
+        {t('privacy.dataTitle')}
+      </h3>
+      <p class="text-sm text-white/70 leading-relaxed max-w-md mx-auto mb-6">
+        {t('privacy.dataDescription')}
+      </p>
+
+      <a
+        href={appStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 bg-transparent text-white font-medium text-lg pl-[25px] pr-[18px] h-14 rounded-[var(--radius-cta)] border border-white/30 hover:bg-white/10 transition-colors duration-200"
+      >
+        {t('cta.downloadApp')}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import BlogCard from '@components/BlogCard.astro';
+import CTASection from '@components/CTASection.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '@i18n/utils';
+import type { Lang } from '@i18n/translations';
+
+const lang: Lang = 'de';
+const t = useTranslations(lang);
+
+const posts = (await getCollection('blog', ({ data }) => {
+  return data.lang === lang && !data.draft;
+})).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<PageLayout
+  title="Blog | Hustlrr"
+  description={t('blog.subtitle')}
+  lang={lang}
+  canonicalPath="/de/blog"
+>
+  <section class="px-5 py-[var(--spacing-section)]">
+    <div class="mx-auto max-w-[var(--max-w-content)]">
+      <div class="text-center mb-16 animate-reveal">
+        <h1 class="text-[var(--text-hero)] font-bold font-[var(--font-display)]">
+          {t('blog.title')}
+        </h1>
+        <p class="text-lg text-text-secondary mt-4 max-w-xl mx-auto">
+          {t('blog.subtitle')}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 animate-stagger">
+        {posts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.id.replace(/^de\//, '')}
+            lang={lang}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection lang={lang} />
+</PageLayout>

@@ -1,0 +1,36 @@
+---
+import type { Lang } from '@i18n/translations';
+import { getAlternatePath, getAlternateLang } from '@i18n/utils';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const altLang = getAlternateLang(lang);
+const altPath = getAlternatePath(currentPath, lang);
+---
+
+<div class="flex items-center gap-1 rounded-[var(--radius-pill)] bg-bg-card border border-border-strong text-sm">
+  <a
+    href={lang === 'en' ? currentPath : altPath}
+    class:list={[
+      'px-3 py-1.5 rounded-[var(--radius-pill)] transition-colors',
+      lang === 'en' ? 'bg-accent text-white' : 'text-text-muted hover:text-text-primary',
+    ]}
+    aria-label="Switch to English"
+  >
+    EN
+  </a>
+  <a
+    href={lang === 'de' ? currentPath : altPath}
+    class:list={[
+      'px-3 py-1.5 rounded-[var(--radius-pill)] transition-colors',
+      lang === 'de' ? 'bg-accent text-white' : 'text-text-muted hover:text-text-primary',
+    ]}
+    aria-label="Auf Deutsch wechseln"
+  >
+    DE
+  </a>
+</div>

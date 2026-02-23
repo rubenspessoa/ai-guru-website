@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./animations.css";
+
+@theme {
+  /* Colors - matched from live hustlrr.ai */
+  --color-bg-primary: #0a0c16;
+  --color-bg-secondary: #111327;
+  --color-bg-card: #161830;
+  --color-bg-card-hover: #1c1f3a;
+
+  --color-accent: #5e6cff;
+  --color-accent-light: #7b86ff;
+  --color-accent-dark: #4a56e0;
+
+  --color-text-primary: #ebebf5;
+  --color-text-secondary: rgba(235, 235, 245, 0.7);
+  --color-text-muted: #6b7280;
+
+  --color-border: #d8e7f212;
+  --color-border-strong: #2a2d4a;
+
+  /* Testimonials / purple section */
+  --color-purple-section: #5e6cff;
+
+  /* Font Families - Inter only, matching live site */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Font Sizes */
+  --text-hero-brand: 46px;
+  --text-hero-title: 26px;
+  --text-hero-subtitle: 20px;
+  --text-section-title: 32px;
+  --text-feature-title: 22px;
+  --text-model-badge: 22px;
+  --text-body: 1rem;
+  --text-body-lg: 18px;
+  --text-small: 0.875rem;
+  --text-xs: 0.75rem;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-block: 4rem;
+
+  /* Border Radius */
+  --radius-card: 1rem;
+  --radius-button: 0.5rem;
+  --radius-pill: 9999px;
+  --radius-cta: 37px;
+  --radius-badge: 16px;
+  --radius-section: 24px;
+
+  /* Max Widths */
+  --max-w-content: 960px;
+  --max-w-article: 768px;
+
+  /* Animation Tokens */
+  --ease-smooth: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 100ms;
+  --duration-base: 200ms;
+  --duration-slow: 400ms;
+  --duration-reveal: 600ms;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: white;
+  }
+}

@@ -1,0 +1,77 @@
+---
+import type { Lang } from '@i18n/translations';
+import { getAlternatePath, getAlternateLang } from '@i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  ogImage?: string;
+  canonicalPath?: string;
+  type?: 'website' | 'article';
+  publishedDate?: string;
+  modifiedDate?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  lang,
+  ogImage = '/images/og-default.png',
+  canonicalPath,
+  type = 'website',
+  publishedDate,
+  modifiedDate,
+  jsonLd,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.hustlrr.ai';
+const currentPath = canonicalPath ?? Astro.url.pathname;
+const canonicalUrl = `${site}${currentPath}`;
+const altLang = getAlternateLang(lang);
+const altPath = getAlternatePath(currentPath, lang);
+const altUrl = `${site}${altPath}`;
+const enUrl = lang === 'en' ? canonicalUrl : altUrl;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
+const locale = lang === 'de' ? 'de_DE' : 'en_US';
+const fullTitle = `${title} | Hustlrr`;
+---
+
+<!-- Primary -->
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Hreflang -->
+<link rel="alternate" hreflang="en" href={lang === 'en' ? canonicalUrl : altUrl} />
+<link rel="alternate" hreflang="de" href={lang === 'de' ? canonicalUrl : altUrl} />
+<link rel="alternate" hreflang="x-default" href={enUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content={locale} />
+<meta property="og:site_name" content="Hustlrr" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- Article-specific -->
+{publishedDate && <meta property="article:published_time" content={publishedDate} />}
+{modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+
+<!-- JSON-LD Structured Data -->
+{jsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}
+
+<!-- Preload critical fonts -->
+<link rel="preload" href="/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/Figtree-Variable.woff2" as="font" type="font/woff2" crossorigin />
