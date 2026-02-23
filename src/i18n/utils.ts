@@ -25,6 +25,7 @@ export function getAlternateLang(lang: Lang): Lang {
 export function getAlternatePath(currentPath: string, currentLang: Lang): string {
   if (currentLang === defaultLang) {
     // EN → DE: prepend /de
+    if (currentPath === '/') return '/de';
     return `/de${currentPath}`;
   }
   // DE → EN: strip /de prefix
