@@ -2,6 +2,7 @@
 import PageLayout from './PageLayout.astro';
 import type { Lang } from '@i18n/translations';
 import { useTranslations, getLocalizedPath } from '@i18n/utils';
+import { APP_STORE_URL } from '@lib/urls';
 
 interface Props {
   lang: Lang;
@@ -34,7 +35,6 @@ const {
 } = Astro.props;
 
 const t = useTranslations(lang);
-const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
 ---
 
 <PageLayout title={title} description={description} lang={lang} jsonLd={jsonLd}>
@@ -61,7 +61,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
           {heroLead}
         </p>
         <a
-          href={appStoreUrl}
+          href={APP_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-3 bg-accent text-white font-bold text-[20px] pl-[25px] pr-[18px] py-3 h-14 rounded-[var(--radius-cta)] hover:bg-accent-light transition-colors duration-200"
@@ -116,7 +116,7 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
   <section class="px-5 py-16">
     <div class="mx-auto max-w-[var(--max-w-content)] text-center animate-reveal">
       <a
-        href={appStoreUrl}
+        href={APP_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-4 bg-white text-bg-primary font-bold text-[22px] pl-10 pr-6 py-6 rounded-[var(--radius-cta)] hover:bg-gray-100 transition-colors duration-200"

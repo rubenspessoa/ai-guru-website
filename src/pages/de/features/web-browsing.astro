@@ -2,25 +2,16 @@
 import FeaturePageLayout from '@layouts/FeaturePageLayout.astro';
 import { useTranslations } from '@i18n/utils';
 import type { Lang } from '@i18n/translations';
+import { createFeatureJsonLd } from '@lib/jsonLd';
 
 const lang: Lang = 'de';
 const t = useTranslations(lang);
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Hustlrr',
-  applicationCategory: 'UtilitiesApplication',
-  operatingSystem: 'iOS, iPadOS, macOS',
+const jsonLd = createFeatureJsonLd({
   description: t('featurePage.webBrowsing.description'),
   url: 'https://www.hustlrr.ai/de/features/web-browsing/',
-  inLanguage: 'de',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'EUR',
-  },
-};
+  lang,
+});
 ---
 
 <FeaturePageLayout
