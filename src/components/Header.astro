@@ -25,13 +25,21 @@ const t = useTranslations(lang);
       />
     </a>
 
-    <!-- Blog link -->
-    <a
-      href={getLocalizedPath('/blog', lang)}
-      class="text-sm text-white/80 hover:text-white transition-colors px-3 py-1.5 rounded"
-    >
-      {t('nav.blog')}
-    </a>
+    <!-- Nav links -->
+    <div class="flex items-center gap-1">
+      <a
+        href={getLocalizedPath('/features/multi-model-chat', lang)}
+        class="text-sm text-white/80 hover:text-white transition-colors px-3 py-1.5 rounded"
+      >
+        {t('nav.features')}
+      </a>
+      <a
+        href={getLocalizedPath('/blog', lang)}
+        class="text-sm text-white/80 hover:text-white transition-colors px-3 py-1.5 rounded"
+      >
+        {t('nav.blog')}
+      </a>
+    </div>
   </nav>
   </div>
 </header>

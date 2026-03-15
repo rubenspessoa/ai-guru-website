@@ -12,11 +12,29 @@ const t = useTranslations(lang);
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Hustlrr',
-  url: 'https://www.hustlrr.ai/de',
-  description: t('hero.subtitle'),
-  inLanguage: 'de',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Hustlrr',
+      url: 'https://www.hustlrr.ai/de',
+      description: t('hero.subtitle'),
+      inLanguage: 'de',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Hustlrr',
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'iOS, iPadOS, macOS',
+      description: t('hero.subtitle'),
+      url: 'https://www.hustlrr.ai/de',
+      inLanguage: 'de',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'EUR',
+      },
+    },
+  ],
 };
 ---
 

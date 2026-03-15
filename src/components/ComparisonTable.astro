@@ -1,0 +1,52 @@
+---
+import type { Lang } from '@i18n/translations';
+import { useTranslations } from '@i18n/utils';
+
+export interface ComparisonRow {
+  feature: string;
+  hustlrr: string | boolean;
+  competitor: string | boolean;
+}
+
+interface Props {
+  lang: Lang;
+  competitor: string;
+  rows: ComparisonRow[];
+}
+
+const { lang, competitor, rows } = Astro.props;
+const t = useTranslations(lang);
+
+function renderCell(value: string | boolean): string {
+  if (value === true) return '✓';
+  if (value === false) return '✗';
+  return value;
+}
+
+function cellColor(value: string | boolean): string {
+  if (value === true) return 'text-green-400';
+  if (value === false) return 'text-red-400/60';
+  return 'text-text-secondary';
+}
+---
+
+<div class="overflow-x-auto rounded-2xl border border-border-strong">
+  <table class="w-full text-left text-[15px]">
+    <thead>
+      <tr class="border-b border-border-strong">
+        <th class="px-5 py-4 font-semibold text-text-secondary">{t('compare.table.feature')}</th>
+        <th class="px-5 py-4 font-semibold text-accent text-center">Hustlrr</th>
+        <th class="px-5 py-4 font-semibold text-text-secondary text-center">{competitor}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row, i) => (
+        <tr class:list={[i % 2 === 0 ? 'bg-white/[0.02]' : '', 'border-b border-border last:border-b-0']}>
+          <td class="px-5 py-3.5 text-white">{row.feature}</td>
+          <td class:list={['px-5 py-3.5 text-center font-medium', cellColor(row.hustlrr)]}>{renderCell(row.hustlrr)}</td>
+          <td class:list={['px-5 py-3.5 text-center font-medium', cellColor(row.competitor)]}>{renderCell(row.competitor)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

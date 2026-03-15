@@ -1,0 +1,151 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import ComparisonTable from '@components/ComparisonTable.astro';
+import { useTranslations, getLocalizedPath } from '@i18n/utils';
+import type { Lang } from '@i18n/translations';
+import type { ComparisonRow } from '@components/ComparisonTable.astro';
+
+const lang: Lang = 'de';
+const t = useTranslations(lang);
+const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id6737912223';
+
+const rows: ComparisonRow[] = [
+  { feature: 'Claude', hustlrr: true, competitor: true },
+  { feature: 'GPT-5', hustlrr: true, competitor: false },
+  { feature: 'Gemini', hustlrr: true, competitor: false },
+  { feature: 'Grok', hustlrr: true, competitor: false },
+  { feature: 'DeepSeek', hustlrr: true, competitor: false },
+  { feature: 'Modell im Gespräch wechseln', hustlrr: true, competitor: false },
+  { feature: 'Integrierter Browser', hustlrr: true, competitor: false },
+  { feature: 'Über Webseiten chatten', hustlrr: true, competitor: false },
+  { feature: 'Nur iCloud-Speicher', hustlrr: true, competitor: false },
+  { feature: 'iPhone, iPad, Mac', hustlrr: true, competitor: true },
+  { feature: 'Made in Europe', hustlrr: true, competitor: false },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: t('compare.vsClaude.faq1Question'),
+      acceptedAnswer: { '@type': 'Answer', text: t('compare.vsClaude.faq1Answer') },
+    },
+    {
+      '@type': 'Question',
+      name: t('compare.vsClaude.faq2Question'),
+      acceptedAnswer: { '@type': 'Answer', text: t('compare.vsClaude.faq2Answer') },
+    },
+    {
+      '@type': 'Question',
+      name: t('compare.vsClaude.faq3Question'),
+      acceptedAnswer: { '@type': 'Answer', text: t('compare.vsClaude.faq3Answer') },
+    },
+  ],
+};
+---
+
+<PageLayout
+  title={t('compare.vsClaude.title')}
+  description={t('compare.vsClaude.description')}
+  lang={lang}
+  canonicalPath="/de/compare/hustlrr-vs-claude"
+  jsonLd={jsonLd}
+>
+  <!-- Breadcrumbs -->
+  <nav class="mx-auto max-w-[var(--max-w-content)] px-5 pt-8 pb-4" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 text-sm text-text-secondary">
+      <li><a href={getLocalizedPath('/', lang)} class="hover:text-white transition-colors">{t('page.breadcrumb.home')}</a></li>
+      <li aria-hidden="true">/</li>
+      <li><span>{t('page.breadcrumb.compare')}</span></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-white" aria-current="page">{t('compare.vsClaude.title')}</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="px-5 pt-8 pb-16">
+    <div class="mx-auto max-w-[var(--max-w-content)] text-center">
+      <h1 class="text-[35px] md:text-[42px] font-bold text-white leading-tight mb-4">
+        {t('compare.vsClaude.heroHeadline')}
+      </h1>
+      <p class="text-[20px] text-text-secondary leading-relaxed max-w-2xl mx-auto">
+        {t('compare.vsClaude.heroLead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="px-5 py-12">
+    <div class="mx-auto max-w-[700px] animate-reveal">
+      <ComparisonTable lang={lang} competitor="Claude" rows={rows} />
+    </div>
+  </section>
+
+  <!-- Key differences -->
+  <section class="px-5 py-16">
+    <div class="mx-auto max-w-[var(--max-w-content)] grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="animate-reveal">
+        <h3 class="text-[20px] font-semibold text-white mb-2">{t('compare.vsClaude.diff1Title')}</h3>
+        <p class="text-[16px] text-text-secondary leading-relaxed">{t('compare.vsClaude.diff1Text')}</p>
+      </div>
+      <div class="animate-reveal">
+        <h3 class="text-[20px] font-semibold text-white mb-2">{t('compare.vsClaude.diff2Title')}</h3>
+        <p class="text-[16px] text-text-secondary leading-relaxed">{t('compare.vsClaude.diff2Text')}</p>
+      </div>
+      <div class="animate-reveal">
+        <h3 class="text-[20px] font-semibold text-white mb-2">{t('compare.vsClaude.diff3Title')}</h3>
+        <p class="text-[16px] text-text-secondary leading-relaxed">{t('compare.vsClaude.diff3Text')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verdict -->
+  <section class="px-5 py-12">
+    <div class="mx-auto max-w-[var(--max-w-content)] animate-reveal">
+      <div class="rounded-[var(--radius-section)] bg-accent/10 border border-accent/20 p-8 md:p-12">
+        <h2 class="text-[24px] font-bold text-white mb-4">{t('compare.verdict')}</h2>
+        <p class="text-[17px] text-text-secondary leading-relaxed">{t('compare.vsClaude.verdictText')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="px-5 py-16">
+    <div class="mx-auto max-w-[var(--max-w-content)]">
+      <h2 class="text-[24px] font-bold text-white text-center mb-10">{t('compare.faq.title')}</h2>
+      <div class="max-w-2xl mx-auto space-y-8">
+        <div class="animate-reveal">
+          <h3 class="text-[17px] font-semibold text-white mb-2">{t('compare.vsClaude.faq1Question')}</h3>
+          <p class="text-[15px] text-text-secondary leading-relaxed">{t('compare.vsClaude.faq1Answer')}</p>
+        </div>
+        <div class="animate-reveal">
+          <h3 class="text-[17px] font-semibold text-white mb-2">{t('compare.vsClaude.faq2Question')}</h3>
+          <p class="text-[15px] text-text-secondary leading-relaxed">{t('compare.vsClaude.faq2Answer')}</p>
+        </div>
+        <div class="animate-reveal">
+          <h3 class="text-[17px] font-semibold text-white mb-2">{t('compare.vsClaude.faq3Question')}</h3>
+          <p class="text-[15px] text-text-secondary leading-relaxed">{t('compare.vsClaude.faq3Answer')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-5 py-16">
+    <div class="mx-auto max-w-[var(--max-w-content)] text-center animate-reveal">
+      <a
+        href={appStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-4 bg-white text-bg-primary font-bold text-[22px] pl-10 pr-6 py-6 rounded-[var(--radius-cta)] hover:bg-gray-100 transition-colors duration-200"
+      >
+        {t('cta.getHustlrr')}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</PageLayout>

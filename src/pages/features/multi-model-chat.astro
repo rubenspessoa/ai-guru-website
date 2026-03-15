@@ -1,0 +1,42 @@
+---
+import FeaturePageLayout from '@layouts/FeaturePageLayout.astro';
+import { useTranslations } from '@i18n/utils';
+import type { Lang } from '@i18n/translations';
+
+const lang: Lang = 'en';
+const t = useTranslations(lang);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Hustlrr',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'iOS, iPadOS, macOS',
+  description: t('featurePage.multiModel.description'),
+  url: 'https://www.hustlrr.ai/features/multi-model-chat/',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+---
+
+<FeaturePageLayout
+  lang={lang}
+  title={t('featurePage.multiModel.title')}
+  description={t('featurePage.multiModel.description')}
+  heroHeadline={t('featurePage.multiModel.heroHeadline')}
+  heroLead={t('featurePage.multiModel.heroLead')}
+  problemTitle={t('featurePage.multiModel.problemTitle')}
+  problemText={t('featurePage.multiModel.problemText')}
+  howTitle={t('featurePage.multiModel.howTitle')}
+  steps={[
+    { title: t('featurePage.multiModel.howStep1Title'), text: t('featurePage.multiModel.howStep1Text') },
+    { title: t('featurePage.multiModel.howStep2Title'), text: t('featurePage.multiModel.howStep2Text') },
+    { title: t('featurePage.multiModel.howStep3Title'), text: t('featurePage.multiModel.howStep3Text') },
+  ]}
+  featureImage="/images/feature-ask.jpg"
+  featureImageAlt="Hustlrr multi-model AI chat interface"
+  jsonLd={jsonLd}
+/>
