@@ -1,6 +1,6 @@
 import type { Lang } from '@i18n/translations';
 
-const currencyByLang: Record<string, string> = {
+const currencyByLang: Record<Lang, string> = {
   de: 'EUR',
   en: 'USD',
 };
