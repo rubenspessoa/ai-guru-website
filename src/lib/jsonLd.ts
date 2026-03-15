@@ -1,5 +1,10 @@
 import type { Lang } from '@i18n/translations';
 
+const currencyByLang: Record<string, string> = {
+  de: 'EUR',
+  en: 'USD',
+};
+
 export function createFeatureJsonLd(options: {
   description: string;
   url: string;
@@ -17,7 +22,7 @@ export function createFeatureJsonLd(options: {
     offers: {
       '@type': 'Offer',
       price: '0',
-      priceCurrency: options.lang === 'de' ? 'EUR' : 'USD',
+      priceCurrency: currencyByLang[options.lang] ?? 'USD',
     },
   };
 }

@@ -157,6 +157,7 @@ export const translations = {
       'Navigate between pages while your AI conversation follows along. No re-pasting needed.',
 
     // Comparison pages
+    'compare.table.caption': 'Hustlrr vs {competitor} feature comparison',
     'compare.table.feature': 'Feature',
     'compare.table.yes': 'Yes',
     'compare.table.no': 'No',
@@ -368,6 +369,7 @@ export const translations = {
       'Navigiere zwischen Seiten, während dein KI-Gespräch folgt. Kein erneutes Einfügen nötig.',
 
     // Comparison pages
+    'compare.table.caption': 'Hustlrr vs {competitor} Funktionsvergleich',
     'compare.table.feature': 'Funktion',
     'compare.table.yes': 'Ja',
     'compare.table.no': 'Nein',

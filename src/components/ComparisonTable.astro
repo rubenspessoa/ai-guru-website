@@ -32,7 +32,7 @@ function cellColor(value: string | boolean): string {
 
 <div class="overflow-x-auto rounded-2xl border border-border-strong">
   <table class="w-full text-left text-[15px]">
-    <caption class="sr-only">Hustlrr vs {competitor} feature comparison</caption>
+    <caption class="sr-only">{t('compare.table.caption').replace('{competitor}', competitor)}</caption>
     <thead>
       <tr class="border-b border-border-strong">
         <th scope="col" class="px-5 py-4 font-semibold text-text-secondary">{t('compare.table.feature')}</th>
