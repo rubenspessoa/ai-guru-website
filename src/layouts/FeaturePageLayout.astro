@@ -1,0 +1,132 @@
+---
+import PageLayout from './PageLayout.astro';
+import type { Lang } from '@i18n/translations';
+import { useTranslations, getLocalizedPath } from '@i18n/utils';
+import { APP_STORE_URL } from '@lib/urls';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  heroHeadline: string;
+  heroLead: string;
+  problemTitle: string;
+  problemText: string;
+  howTitle: string;
+  steps: Array<{ title: string; text: string }>;
+  featureImage: string;
+  featureImageAlt: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  lang,
+  title,
+  description,
+  heroHeadline,
+  heroLead,
+  problemTitle,
+  problemText,
+  howTitle,
+  steps,
+  featureImage,
+  featureImageAlt,
+  jsonLd,
+} = Astro.props;
+
+const t = useTranslations(lang);
+---
+
+<PageLayout title={title} description={description} lang={lang} jsonLd={jsonLd}>
+
+  <!-- Breadcrumbs -->
+  <nav class="mx-auto max-w-[var(--max-w-content)] px-5 pt-8 pb-4" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 text-sm text-text-secondary">
+      <li><a href={getLocalizedPath('/', lang)} class="hover:text-white transition-colors">{t('page.breadcrumb.home')}</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href={getLocalizedPath('/features/multi-model-chat', lang)} class="hover:text-white transition-colors">{t('page.breadcrumb.features')}</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-white" aria-current="page">{title}</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="px-5 pt-8 pb-16">
+    <div class="mx-auto max-w-[var(--max-w-content)] flex flex-col min-[1000px]:flex-row items-center gap-10">
+      <div class="flex-1 text-center min-[1000px]:text-left">
+        <h1 class="text-[35px] md:text-[42px] font-bold text-white leading-tight mb-4">
+          {heroHeadline}
+        </h1>
+        <p class="text-[20px] text-text-secondary leading-relaxed mb-8">
+          {heroLead}
+        </p>
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 bg-accent text-white font-bold text-[20px] pl-[25px] pr-[18px] py-3 h-14 rounded-[var(--radius-cta)] hover:bg-accent-light transition-colors duration-200"
+        >
+          {t('cta.getHustlrr')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      <div class="w-full max-w-[450px] min-[1000px]:w-[450px] min-[1000px]:shrink-0 aspect-[9/7] rounded-[44px] overflow-hidden bg-[#15161a]/80">
+        <img src={featureImage} alt={featureImageAlt} class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="px-5 py-16">
+    <div class="mx-auto max-w-[var(--max-w-content)]">
+      <div class="animate-reveal max-w-2xl mx-auto text-center">
+        <h2 class="text-[28px] font-bold text-white mb-4">{problemTitle}</h2>
+        <p class="text-[18px] text-text-secondary leading-relaxed">{problemText}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="px-5 py-16">
+    <div class="mx-auto max-w-[var(--max-w-content)]">
+      <h2 class="text-[28px] font-bold text-white text-center mb-12 animate-reveal">{howTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((step, i) => (
+          <div class="animate-reveal text-center md:text-left">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent/20 text-accent font-bold text-lg mb-4">{i + 1}</div>
+            <h3 class="text-[20px] font-semibold text-white mb-2">{step.title}</h3>
+            <p class="text-[16px] text-text-secondary leading-relaxed">{step.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof -->
+  <section class="px-5 py-12">
+    <div class="mx-auto max-w-[var(--max-w-content)] flex items-center justify-center gap-8 animate-reveal">
+      <img src="/images/badge-ratings.png" alt={t('badge.appStore')} class="h-[50px] w-auto" />
+      <img src="/images/badge-eu.png" alt={t('badge.europe')} class="h-[50px] w-auto" />
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="px-5 py-16">
+    <div class="mx-auto max-w-[var(--max-w-content)] text-center animate-reveal">
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-4 bg-white text-bg-primary font-bold text-[22px] pl-10 pr-6 py-6 rounded-[var(--radius-cta)] hover:bg-gray-100 transition-colors duration-200"
+      >
+        {t('cta.getHustlrr')}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</PageLayout>

@@ -1,6 +1,6 @@
 ---
 import type { Lang } from '@i18n/translations';
-import { useTranslations } from '@i18n/utils';
+import { useTranslations, getLocalizedPath } from '@i18n/utils';
 
 interface Props {
   lang: Lang;
@@ -30,9 +30,12 @@ const appStoreUrl = 'https://apps.apple.com/app/hustlrr-every-ai-chat/id67379122
         <h3 class="text-[35px] font-medium text-white mb-3">
           {t('features.browsing.title')}
         </h3>
-        <p class="text-[22px] font-medium text-text-secondary leading-relaxed">
+        <p class="text-[22px] font-medium text-text-secondary leading-relaxed mb-4">
           {t('features.browsing.description')}
         </p>
+        <a href={getLocalizedPath('/features/web-browsing', lang)} class="text-[16px] font-medium text-accent hover:text-accent-light transition-colors">
+          {t('page.learnMore')} &rarr;
+        </a>
       </div>
     </div>
 
